@@ -5,6 +5,7 @@ Założenia:
 
 r > 0 
 H > 0
+V > 0
 
 Rozwiązanie analityczne:
 
@@ -20,12 +21,9 @@ r^3 = V / ( 2 * pi )
 
 r = 0,54
 
-H = 1,09
+H = 0,58
 
 */
-
-
-
 
 namespace Optymalizacja
 {
@@ -33,12 +31,18 @@ namespace Optymalizacja
     {
         static void Main(string[] args)
         {
-            string fname, lname;
-            Console.Write("Enter your first name: ");
-            fname = Console.ReadLine();
-            Console.Write("Enter your last name: ");
-            lname = Console.ReadLine();
-            Console.Write("You full name is " + fname + " " + lname);
+            double V, r, Pc, H;
+
+            Console.Write("Podaj wartosć objętości: ");
+            V = Convert.ToDouble(Console.ReadLine());
+
+            r = Math.Pow(V / ( 2 * Math.PI ), 1.0/3);
+
+            Pc = 2 * Math.PI * Math.Pow(r, 2) + 2 * V / r;
+
+            H = V / (Math.PI * r);
+
+            Console.Write("Minimalne pole powierzchni to: " + Pc + " Minimalny promień to: " + r + " Minimalna wysokosć to: " + H);
         }
     }
 }
