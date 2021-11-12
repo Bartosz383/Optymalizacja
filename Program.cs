@@ -31,10 +31,21 @@ namespace Optymalizacja
     {
         static void Main(string[] args)
         {
-            double V, r, Pc, H;
+            double V, r, Pc, H, P;
 
-            Console.Write("Podaj wartosć objętości: ");
-            V = Convert.ToDouble(Console.ReadLine());
+            V = 1;
+
+            for (double i = 0; i < 10; i++)
+            {
+                P = i * i * Math.PI;
+                Console.Write(P);
+            }
+
+            Console.Write("\n*******************");
+
+           // Console.Write("Podaj wartosć objętości: ");
+
+           // V = Convert.ToDouble(Console.ReadLine());
 
             r = Math.Pow(V / ( 2 * Math.PI ), 1.0/3);
 
@@ -42,7 +53,7 @@ namespace Optymalizacja
 
             H = V / (Math.PI * r);
 
-            Console.Write("Minimalne pole powierzchni to: " + Pc + " Minimalny promień to: " + r + " Minimalna wysokosć to: " + H);
+            Console.Write("\nMinimalne pole powierzchni to: " + Pc + " Minimalny promień to: " + r + " Minimalna wysokosć to: " + H);
         }
     }
 }
