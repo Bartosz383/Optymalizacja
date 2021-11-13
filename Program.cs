@@ -68,6 +68,8 @@ namespace Optymalizacja
             }
 
             Console.WriteLine( (a + b) / 2);
+            Console.WriteLine(P1);
+            Console.WriteLine(P2);
 
         }
     }
