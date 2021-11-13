@@ -31,7 +31,9 @@ namespace Optymalizacja
     {
         static void Main(string[] args)
         {
-            double ZP, a, b, d, r1, r2, P1, P2, V;
+            double ZP, a, b, d, r1, r2, P1, P2, V, E;
+
+            E = 0.01;
 
             V = 1;
 
@@ -45,55 +47,28 @@ namespace Optymalizacja
             P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
             P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
 
-            if (P1 < P2)
+            while ( (b - a) > E)
             {
-                r2 = a;
-                r1 = r2;
-                P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
-                P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
+                if (P1 < P2)
+                {
+                    a = r2;
+                    r1 = r2;
+                    r2 = b - d;
+                    // P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
+                    // P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
+                }
+                else
+                {
+                    b = r1;
+                    r2 = r1;
+                    r1 = a + d;
+                    // P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
+                    // P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
+                }
             }
-            else if (P1 > P2)
-            {
-                r1 = b;
-                r2 = r1;
-                P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
-                P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
-            }
 
-            Console.WriteLine(P1.ToString());
-            Console.WriteLine(P2);
+            Console.WriteLine( (a + b) / 2);
 
-            Console.ReadLine();
-           
-	        
-            // float V, r, Pc, H;
-            
-            // V = 1;
-
-            // int x = 0;
-            // double y =0;
-            // Console.WriteLine("Podaj liczbe");
-            // x = Convert.ToInt32(Console.ReadLine());
-            // V = float.Parse("50.32", System.Globalization.CultureInfo.InvariantCulture);
-            // Console.WriteLine("podales {0}  \n", x);
-            // Console.ReadLine();
-            // Console.WriteLine(V);
-        
-            // Console.Write("Cześć. \nJestem programem do szukania minimalnego pola powierzchni dla walca o objętosći V = 1. W jakim przedziale szukasz minimum drogi użytkowniku? ");       
-
-            // Console.Write("\n*******************");
-
-           // Console.Write("Podaj wartosć objętości: ");
-
-           // V = Convert.ToDouble(Console.ReadLine());
-
-            // r = Math.Pow(V / ( 2 * Math.PI ), 1.0/3);
-
-            // Pc = 2 * Math.PI * Math.Pow(r, 2) + 2 * V / r;
-
-            // H = V / (Math.PI * r);
-
-            //Console.Write("\nMinimalne pole powierzchni to: " + Pc + " Minimalny promień to: " + r + " Minimalna wysokosć to: " + H);
         }
     }
 }
