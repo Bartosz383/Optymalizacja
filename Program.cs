@@ -33,12 +33,12 @@ namespace Optymalizacja
         {
             double ZP, a, b, d, r1, r2, P1, P2, V, E;
 
-            E = 0.01;
+            E = 0.001;
 
             V = 1;
 
             a = 0;
-            b = 2;
+            b = 1;
 
             ZP = (Math.Pow(5, 1/2) - 1 ) /2;
             d = ZP * (b - a);
@@ -47,7 +47,7 @@ namespace Optymalizacja
             P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
             P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
 
-            while ( (b - a) > E)
+            while ( (b - a) < E)
             {
                 if (P1 < P2)
                 {
