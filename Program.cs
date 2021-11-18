@@ -1,28 +1,18 @@
-using System;
+﻿using System;
 
 /* 
 Założenia:
-
 r > 0 
 H > 0
 V > 0
-
 Rozwiązanie analityczne:
-
 V = Pp * H  ->  H = V / (pi* r^2)
-
 Pp = V / H
-
 Pc = 2 * pi * r^2 + 2 * pi * r * H  ->  Pc = 2 * pi * r^2 + 2 * V / r
-
 Pc' = 4 * pi * r - 2 * V / r^2 = 0
-
 r^3 = V / ( 2 * pi )
-
 r = 0,54
-
 H = 0,58
-
 */
 
 namespace Optymalizacja
@@ -31,45 +21,49 @@ namespace Optymalizacja
     {
         static void Main(string[] args)
         {
-            double ZP, a, b, d, r1, r2, P1, P2, V, E;
+            double a = 0, b = 1, E = 0.01;
 
-            E = 0.001;
+            double k = (Math.Pow(5, 0.5) - 1)/ 2;
 
-            V = 1;
+            double xl = b - k * (b - a);
+            double xr = a + k * (b - a);
 
-            a = 0;
-            b = 1;
+            Console.WriteLine(a.ToString());
+            Console.WriteLine(b.ToString());
+            Console.WriteLine(k.ToString());
+            Console.WriteLine(xl.ToString()); 
+            Console.WriteLine(xr.ToString());
 
-            ZP = (Math.Pow(5, 1/2) - 1 ) /2;
-            d = ZP * (b - a);
-            r1 = a + d;
-            r2 = b - d;
-            P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
-            P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
-
-            while ( (b - a) < E)
+            while ((b - a) > E)
             {
-                if (P1 < P2)
+                if ( 2*Math.PI*xl*xl+2/xl < 2 * Math.PI * xr * xr + 2 / xr)
                 {
-                    a = r2;
-                    r1 = r2;
-                    r2 = b - d;
-                    // P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
-                    // P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
+                    b = xr;
+                    xr = xl;
+                    xl = b - k * (b - a);
                 }
                 else
                 {
-                    b = r1;
-                    r2 = r1;
-                    r1 = a + d;
-                    // P1 = 2 * Math.PI * Math.Pow(r1, 2) + 2 * V / r1;
-                    // P2 = 2 * Math.PI * Math.Pow(r2, 2) + 2 * V / r2;
+                    a = xl;
+                    xl = xr;
+                    xr = a + k * (b - a);
                 }
             }
 
-            Console.WriteLine( (a + b) / 2);
-            Console.WriteLine(P1);
-            Console.WriteLine(P2);
+            double z = (a + b) / 2;
+
+            Console.WriteLine(a.ToString());
+            Console.WriteLine(b.ToString());
+            Console.WriteLine(k.ToString());
+            Console.WriteLine(xl.ToString());
+            Console.WriteLine(xr.ToString());
+
+            Console.WriteLine("To jest promień ");
+            Console.WriteLine(z.ToString());
+
+            Console.WriteLine("To jest pole ");
+            Console.WriteLine(2 * Math.PI * z * z + 2 / z);
+          
 
         }
     }
